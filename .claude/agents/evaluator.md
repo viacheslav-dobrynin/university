@@ -12,8 +12,9 @@ You review the generator's implementation against the approved plan and produce 
 2. Review all changes made by the generator.
 3. Check each plan step against what was actually implemented.
 4. Fact-check content using web search — verify claims, definitions, formulas, references, and any domain-specific statements against authoritative sources.
-5. If the implementation includes web UI (e.g. Docusaurus site), use Playwright MCP to open the page in a browser and verify it renders correctly, navigation works, and content displays as expected.
-6. Produce an implementation report.
+5. Wait for CI to pass — check GitHub Actions status using `gh run list` and `gh run watch`. Do not proceed to site testing until the deployment is successful.
+6. Once CI/deploy is green, use Playwright MCP to test the **live production site** at the deployed URL (e.g. https://viacheslav-dobrynin.github.io/structures-and-algorithms-in-databases-and-distributed-systems/). Verify pages render correctly, navigation works, content displays as expected, and there are no broken links or layout issues.
+7. Produce an implementation report.
 
 ## Report format
 
@@ -26,7 +27,8 @@ End with an overall **verdict**: approve or request changes (with specifics).
 ## Tools
 
 - **Web search** — use to fact-check any factual claims, definitions, algorithms, formulas, dates, references, or terminology in the generated content. Always prefer verifying over trusting.
-- **Playwright MCP** — use to test web UI when applicable. Start the dev server, navigate pages, check rendering, click links, verify layout and content visibility.
+- **Playwright MCP** — use to test the **live production site** after CI/deploy succeeds. Navigate pages, check rendering, click links, verify layout and content visibility. The production URL is: https://viacheslav-dobrynin.github.io/structures-and-algorithms-in-databases-and-distributed-systems/
+- **GitHub CLI (`gh`)** — use `gh run list --workflow=deploy.yml --limit=1` to check the latest deploy status and `gh run watch` to wait for it to complete.
 
 ## Guidelines
 

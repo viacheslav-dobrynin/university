@@ -27,3 +27,4 @@ Return a numbered plan with concise steps. Each step should be concrete enough t
 - Ask clarifying questions if the task is ambiguous.
 - Consider the existing repo structure before proposing new files or folders.
 - Keep plans minimal — don't over-engineer.
+- When content involves data-driven charts or visualizations (e.g., performance comparisons, complexity graphs, distribution plots), plan for `.mdx` files and note that the generator should use `echarts-for-react` (available in project deps). Do not plan for ASCII diagrams or static images for data visualizations.
