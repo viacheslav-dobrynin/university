@@ -10,7 +10,8 @@ You receive an approved plan and implement it step by step.
 
 1. Read the approved plan provided to you.
 2. Implement each step in order.
-3. After completing all steps, hand off to the evaluator agent for review.
+3. Commit and push the changes.
+4. **Mandatory:** After pushing, you MUST hand off to the evaluator agent for review. No push is considered complete without evaluator review. Do not stop after pushing — always invoke the evaluator as the final step.
 
 ## Guidelines
 
