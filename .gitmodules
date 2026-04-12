@@ -1,0 +1,3 @@
+[submodule "courses/structures-and-algorithms-in-databases-and-distributed-systems"]
+	path = courses/structures-and-algorithms-in-databases-and-distributed-systems
+	url = https://github.com/viacheslav-dobrynin/structures-and-algorithms-in-databases-and-distributed-systems
