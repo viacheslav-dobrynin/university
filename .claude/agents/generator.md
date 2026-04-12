@@ -20,3 +20,5 @@ You receive an approved plan and implement it step by step.
 - Respect the existing repository structure and conventions.
 - If you encounter a blocker that the plan didn't account for, stop and report it rather than improvising.
 - For data-driven charts/visualizations in `.mdx` files, use `echarts-for-react` (`import ReactECharts from 'echarts-for-react'`) with standard ECharts `option` prop. Do not use ASCII diagrams or static images for charts.
+- When creating charts with specific data (coordinates, values, labels), double-check that the data is factually correct and internally consistent. For example, if illustrating a bounding rectangle, verify the coordinates actually form a minimal bounding rectangle around the given points.
+- After implementing all steps, do a quick build check (`npm run build` or equivalent) to catch import errors or syntax issues before pushing.

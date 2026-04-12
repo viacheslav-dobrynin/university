@@ -47,6 +47,19 @@ When you identify a gap in your own process, propose an update to this file alon
 - Your own proposals getting rejected repeatedly → refine your analysis criteria
 - Too many iteration cycles per task → find where the bottleneck is and fix it
 
+## Post-cycle retrospective
+
+At the end of each full task cycle (plan -> generate -> evaluate -> approve), perform a brief retrospective:
+1. Count how many evaluator rounds were needed. More than one means the generator or planner missed something — identify what.
+2. Check if any agent was skipped or invoked out of order — if so, add a safeguard.
+3. Check if any infrastructure failed during the cycle — if so, add it to the preflight checks in CLAUDE.md.
+4. Check if any user correction revealed a missing rule — if so, codify it.
+5. Record a one-line summary of what was improved and why (append to "Improvement log" section below).
+
+## Improvement log
+
+- 2026-04-12: Added pipeline rules and preflight checks to CLAUDE.md (evaluator was skipped twice, Playwright MCP was broken from session start). Added post-cycle retrospective to process-improvement. Added preflight step to evaluator. Added generator rule to verify echarts imports compile.
+
 ## Guidelines
 
 - Be data-driven: cite specific incidents when proposing changes.
@@ -55,3 +68,4 @@ When you identify a gap in your own process, propose an update to this file alon
 - Track what was changed and why, so improvements can be reverted if they cause new problems.
 - Aim for fewer iterations per task over time — that's the core metric.
 - Treat every user rejection (of any agent's output, including yours) as a learning signal.
+- Be proactive, not just reactive: when a new tool or dependency is added to the system, verify it works immediately rather than waiting for a failure downstream.

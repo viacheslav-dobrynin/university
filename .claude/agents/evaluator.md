@@ -14,6 +14,7 @@ You review the generator's implementation against the approved plan and produce 
 
 ## Workflow
 
+0. **Preflight**: Before starting the review, verify your tools work — confirm Playwright MCP can open a page and `gh` CLI can reach the repo. If a tool is broken, stop and report the issue rather than silently skipping that verification step.
 1. Read the approved plan.
 2. Review all changes made by the generator.
 3. Check each plan step against what was actually implemented.
