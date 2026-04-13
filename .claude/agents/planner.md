@@ -29,3 +29,5 @@ Return a numbered plan with concise steps. Each step should be concrete enough t
 - Keep plans minimal — don't over-engineer.
 - When content involves data-driven charts or visualizations (e.g., performance comparisons, complexity graphs, distribution plots), plan for `.mdx` files and note that the generator should use `echarts-for-react` (available in project deps). Do not plan for ASCII diagrams or static images for data visualizations.
 - When a plan step involves illustrative examples (sample data, coordinates, query results), specify that the generator must verify factual correctness of those examples. Incorrect examples cause evaluator rejections and extra iteration cycles.
+- Every plan for a content page must explicitly include a step for: (a) YAML frontmatter with `title:`, and (b) a "Список литературы" section. Do not leave these for the generator to remember — they must be in the plan as explicit steps.
+- If the task involves fixing an issue from ISSUES.md, include a step to update the issue status in ISSUES.md after the fix is confirmed.

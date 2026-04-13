@@ -59,6 +59,7 @@ At the end of each full task cycle (plan -> generate -> evaluate -> approve), pe
 ## Improvement log
 
 - 2026-04-12: Added pipeline rules and preflight checks to CLAUDE.md (evaluator was skipped twice, Playwright MCP was broken from session start). Added post-cycle retrospective to process-improvement. Added preflight step to evaluator. Added generator rule to verify echarts imports compile.
+- 2026-04-12: Added STOP CHECKPOINT block to CLAUDE.md pipeline section (evaluator skipped 3 times total — rules exist but aren't prominent enough). Added ISSUES.md ownership and format rules to CLAUDE.md. Added "Список литературы" and frontmatter title as mandatory content standards in CLAUDE.md, generator, and evaluator. Added ISSUES.md maintenance instructions to evaluator. Updated planner to explicitly plan for references and frontmatter. Added content quality checklist to evaluator for consistent per-page review. Updated preflight section to stress "run at session start, not when first needed."
 
 ## Guidelines
 

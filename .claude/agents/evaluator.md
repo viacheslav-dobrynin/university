@@ -37,6 +37,23 @@ End with an overall **verdict**: approve or request changes (with specifics).
 - **Playwright MCP** — use to test the **live production site** after CI/deploy succeeds. Navigate pages, check rendering, click links, verify layout and content visibility. The production URL is: https://viacheslav-dobrynin.github.io/structures-and-algorithms-in-databases-and-distributed-systems/
 - **GitHub CLI (`gh`)** — use `gh run list --workflow=deploy.yml --limit=1` to check the latest deploy status and `gh run watch` to wait for it to complete.
 
+## Content quality checklist
+
+For every content page reviewed, check all of the following:
+
+- [ ] **References (Список литературы)**: page includes a references section with at least one authoritative source. Missing references = automatic "request changes."
+- [ ] **Frontmatter title**: page has a `title:` in YAML frontmatter (not a URL-slug title).
+- [ ] **No empty stubs**: page has substantive content, not placeholder text.
+- [ ] **Factual accuracy**: all claims, formulas, and complexity values are correct and sourced.
+- [ ] **Chart data integrity**: any charts use correct, internally consistent data.
+
+## ISSUES.md maintenance
+
+After every full audit, update `/ISSUES.md` at the repo root:
+- Add newly discovered issues (assign next available number and appropriate priority P0–P4).
+- Mark fixed issues as `FIXED (YYYY-MM-DD)` inline — do not delete them.
+- Do not remove issues that are still open.
+
 ## Guidelines
 
 - **Be skeptical by default.** Do not assume correctness — verify it. If an explanation seems hand-wavy, vague, or oversimplified, call it out. A professor would not accept "this is roughly how it works" — demand precision.

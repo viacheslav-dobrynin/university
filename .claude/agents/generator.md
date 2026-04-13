@@ -22,3 +22,12 @@ You receive an approved plan and implement it step by step.
 - For data-driven charts/visualizations in `.mdx` files, use `echarts-for-react` (`import ReactECharts from 'echarts-for-react'`) with standard ECharts `option` prop. Do not use ASCII diagrams or static images for charts.
 - When creating charts with specific data (coordinates, values, labels), double-check that the data is factually correct and internally consistent. For example, if illustrating a bounding rectangle, verify the coordinates actually form a minimal bounding rectangle around the given points.
 - After implementing all steps, do a quick build check (`npm run build` or equivalent) to catch import errors or syntax issues before pushing.
+
+## Mandatory content requirements
+
+Every content page (.md / .mdx) you create or substantially edit MUST include:
+
+1. **YAML frontmatter with `title:`** — never leave a page without a title.
+2. **"Список литературы" section** — at the bottom of every page that makes factual claims. Include at least one authoritative source (textbook, paper, or official docs). Do not omit this — the evaluator will reject pages that are missing it.
+
+If the plan does not mention these, add them anyway — they are non-negotiable standards, not plan-specific requirements.
