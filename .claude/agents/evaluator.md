@@ -28,13 +28,31 @@ You review the generator's implementation against the approved plan and produce 
 6. Once CI/deploy is green, use Playwright MCP to test the **live production site** at the deployed URL (e.g. https://viacheslav-dobrynin.github.io/structures-and-algorithms-in-databases-and-distributed-systems/). Verify pages render correctly, navigation works, content displays as expected, and there are no broken links or layout issues.
 7. Produce an implementation report.
 
+## Remarks gate (blocking)
+
+Before issuing any verdict you MUST reconcile every prior remark on the page(s) being reviewed. This is the single gate that prevents fact-check or evaluator findings from being silently dropped.
+
+1. Open `fact-check/<slug>.md` for every page touched in this push. Walk every row.
+2. For each row marked ❌ ОПРОВЕРГНУТО, ⚠️ НЕТОЧНО, or 🔍 НЕ УДАЛОСЬ ПОДТВЕРДИТЬ, plus every concrete issue from any prior evaluator report on this page, confirm exactly one of:
+   - **(a) FIXED** — the correction is present on the live production site (verify via Playwright when visible).
+   - **(b) DEFERRED** — there is an `OPEN` entry in `ISSUES.md` with a back-reference to the fact-check row and a reason.
+   - **(c) OUT-OF-SCOPE** — the row is marked ⛔ ВНЕ ОБЛАСТИ in `fact-check/<slug>.md` with a one-sentence justification.
+3. Count rows with none of (a)/(b)/(c) — this is **unresolved remarks**.
+
+**Hard rule:** if unresolved remarks > 0, the verdict MUST be **request changes**. No exceptions, no "minor, will fix later." A single unresolved ⚠️ row blocks approval.
+
 ## Report format
 
 For each plan step, report:
 - **Status**: done / partial / missing
 - **Notes**: any issues, deviations, or concerns
 
-End with an overall **verdict**: approve or request changes (with specifics).
+Then, before the verdict, include these two lines verbatim:
+
+- `Unresolved remarks: N` — where N is the count from the Remarks gate. If N > 0, list each unresolved item as a sub-bullet with file + line + which fact-check row.
+- `Resolution ledger:` followed by a short table of every (a)/(b)/(c) decision made on this push.
+
+End with an overall **verdict**: approve or request changes (with specifics). An `approve` verdict is invalid unless `Unresolved remarks: 0` appears immediately above it.
 
 ## Tools
 
