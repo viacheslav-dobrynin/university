@@ -9,7 +9,7 @@ Last verification pass (sentence-by-sentence): 2026-05-08
 
 | # | Раздел | Строки | Статус | Дата | Резюме |
 |---|---|---|---|---|---|
-| 1 | Мотивация | 10–20 | ✅ Проверено | 2026-05-08 | Pathfinder, PostgreSQL LWLock, Bw-tree, Linux RCU подтверждены. Мелкое замечание: «мьютекс bus management» — по Reeves '97 это не «мьютекс bus management», а мьютекс внутри `select()`, удерживаемый низкоприоритетной задачей ASI/MET; bus management — высокоприоритетная блокированная задача (`bc_dist`). Замечание о PG `WALInsertLock` — корректно (NUM_XLOGINSERT_LOCKS=8 в xlog.c, но reference [19] указывает на lwlock.c, где определения локов нет). |
+| 1 | Мотивация | 10–20 | ✅ Проверено | 2026-05-18 | Pathfinder, PostgreSQL LWLock, Bw-tree, Linux RCU подтверждены. Замечания закрыты в fix pass 2026-05-18: формулировка Pathfinder переписана под Reeves '97 (ASI/MET держит IPC-семафор внутри `select()`, блокируется `bc_dist`); ссылка [19] перенаправлена с `lwlock.c` на `xlog.c` (где определены `NUM_XLOGINSERT_LOCKS=8` и массив `WALInsertLocks`). |
 | 2 | Условия прогресса | 22–40 | ✅ Проверено | 2026-05-08 | Иерархия Herlihy/Shavit и Kogan-Petrank PPoPP 2011 — подтверждены. |
 | 3 | Атомарные примитивы и память | 42–104 | ✅ Проверено | 2026-05-08 | x86 `LOCK CMPXCHG`/`LOCK XADD`, ARMv8.1 LSE (CAS/CASA/CASL/CASAL), `LDXR`/`STXR` (LDREX/STREX) — подтверждены. JEP 188 / JSR-133 — корректно. |
 | 4 | Проблема ABA | 106–116 | ✅ Проверено | 2026-05-08 | Tagged-pointer/CMPXCHG16B, hazard pointers Michael 2004, EBR Fraser 2004, RCU, GC-обоснование для JDK — все подтверждены. |
