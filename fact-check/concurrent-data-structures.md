@@ -13,10 +13,10 @@ Last verification pass (sentence-by-sentence): 2026-05-08
 | 2 | Условия прогресса | 22–40 | ✅ Проверено | 2026-05-08 | Иерархия Herlihy/Shavit и Kogan-Petrank PPoPP 2011 — подтверждены. |
 | 3 | Атомарные примитивы и память | 42–104 | ✅ Проверено | 2026-05-08 | x86 `LOCK CMPXCHG`/`LOCK XADD`, ARMv8.1 LSE (CAS/CASA/CASL/CASAL), `LDXR`/`STXR` (LDREX/STREX) — подтверждены. JEP 188 / JSR-133 — корректно. |
 | 4 | Проблема ABA | 106–116 | ✅ Проверено | 2026-05-08 | Tagged-pointer/CMPXCHG16B, hazard pointers Michael 2004, EBR Fraser 2004, RCU, GC-обоснование для JDK — все подтверждены. |
-| 5 | Lock-free структуры данных: каноничные конструкции | 117–185 | ⚠️ Проверено с замечаниями | 2026-05-08 | Treiber RJ 5118 (1986), Michael-Scott PODC 1996, Harris DISC 2001, Michael SPAA 2002, Shalev-Shavit JACM 2006, Cliff Click 2007, Fraser UCAM-CL-TR-579 (2004), Bw-tree ICDE 2013 — все подтверждены поштучно. Замечание: ConcurrentSkipListMap javadoc формально не пишет «based on Fraser and Harris» — внутрикодовый комментарий и AQS paper говорят «Doug Lea, based on works by Fraser and Harris»; формулировка в тексте «javadoc прямо указывает» — не точна (это внутрикодовый комментарий, а не публичный javadoc). |
+| 5 | Lock-free структуры данных: каноничные конструкции | 117–185 | ✅ Проверено | 2026-05-23 | Treiber RJ 5118 (1986), Michael-Scott PODC 1996, Harris DISC 2001, Michael SPAA 2002, Shalev-Shavit JACM 2006, Cliff Click 2007, Fraser UCAM-CL-TR-579 (2004), Bw-tree ICDE 2013 — все подтверждены поштучно. Замечания закрыты в fix pass 2026-05-23: (a) #D — production user Treiber заменён с AQS (фактически CLH FIFO) на `FutureTask.WaitNode` (внутрикодовый комментарий явно «Treiber stack»); добавлена ссылка [23] на OpenJDK FutureTask.java; (b) #E — «закрытое хеширование с lock-free chains» исправлено на «открытое хеширование (separate chaining)» (chains ≡ separate chaining ≡ open hashing по Knuth/Sedgewick); (c) #N — субъективное «использовать с осторожностью» убрано; оставлено фактическое «peer-reviewed формального доказательства нет». |
 | 6 | Безопасное освобождение памяти | 187–197 | ✅ Проверено | 2026-05-18 | HP, EBR, RCU описаны корректно. Замечание закрыто в fix pass 2026-05-18: пример EBR-ядра NetBSD исправлен с `vmem` (general-purpose resource allocator) на `pserialize(9)` (passive serialization, реализация в `sys/kern/subr_pserialize.c`); добавлена ссылка [22] на NetBSD kernel manual. |
 | 7 | Применения в БД и распределённых системах | 198–207 | ✅ Проверено | 2026-05-08 | Bw-tree → SQL Server Hekaton/Cosmos DB/Bing ObjectStore — точно (SDC15 SNIA презентация). LMAX Disruptor lock-free но не wait-free — корректно. PG `WALInsertLock` 8 слотов с FAA — корректно. RCU dcache/FIB/BPF — подтверждено. LeanStore/Umbra CLOCK с reference-bit — подтверждено. |
-| 8 | Визуализация: пропускная способность под контеншеном | 208–268 | ⚠️ Проверено с замечанием | 2026-05-08 | Hendler-Shavit-Yerushalmi SPAA 2004 действительно использовал 14-node Sun Enterprise E6500 (7 boards × 2 × 400MHz UltraSPARC, Solaris 9). **Замечание**: ось X в графике помечена «1..32» с числами потоков 32 — машина имеет 14 CPU; масштабирование до 32 потоков превышает физические ядра, что не отмечено и может вводить в заблуждение. Числа на графике не выверены против оригинала Figure 7 (PDF не парсится через WebFetch); это **иллюстративные точки**, не точная репродукция данных статьи. |
+| 8 | Визуализация: пропускная способность под контеншеном | 208–268 | ✅ Проверено | 2026-05-23 | Hendler-Shavit-Yerushalmi SPAA 2004 (14-node Sun Enterprise E6500, 7 boards × 2 × 400MHz UltraSPARC, Solaris 9) подтверждено. Иллюстративный статус графика зафиксирован disclaimer-параграфом и markLine на x=14 (fix pass #1.4 от 2026-05-18). Замечание закрыто в fix pass 2026-05-23: #K — «elimination-backoff stack достигает ~7500 ops/сек при 32 потоках» (число не выверено против Figure 7) заменено на качественное «масштабируется почти линейно, тогда как обычный Treiber выходит на плато»; подтверждено абстрактом SPAA 2004. |
 | 9 | Сравнение с альтернативами | 270–278 | ✅ Проверено | 2026-05-08 | Все строки таблицы качественно корректны. |
 | 10 | Подводные камни и анти-паттерны | 280–285 | ✅ Проверено | 2026-05-08 | SPIN, CDSChecker (Norris-Demsky OOPSLA 2013), GenMC (Kokologiannakis), jcstress (OpenJDK) — подтверждены. |
 | 11 | Список литературы | 287–329 | ✅ Проверено | 2026-05-18 | Все DOI и URL подтверждены, ссылки доступны. Замечания закрыты в fix pass 2026-05-18: (a) ссылка [19] перенаправлена с `lwlock.c` на `src/backend/access/transam/xlog.c` (anchor `ref-postgres-lwlock` сохранён); (b) ссылка [13] перенаправлена с публичного javadoc на исходник `ConcurrentSkipListMap.java` в OpenJDK, формулировка в теле страницы смягчена до «class-level комментарий в исходнике»; (c) добавлена ссылка [22] на NetBSD `pserialize(9)`. |
@@ -244,13 +244,22 @@ Preflight 2026-05-08:
 
 **Unresolved remarks: 0** (in-scope set: items #1.1–#1.5 all FIXED).
 
-Explicitly out of scope (remain ⚠️ by design, not blocking this pass):
-- #B (row 25, line 40) — CLQ javadoc wording.
-- #C (row 44, line 111) — DCAS/DWCAS terminology.
-- #D (row 51, line 126) — AQS CLH-vs-Treiber attribution.
-- #E (row 58, line 164) — closed/open hashing terminology.
-- #H (row 81, line 202) — Disruptor FAA/CAS + «не wait-free» attribution.
-- #K (row 92, line 268) — quantitative «~7500 ops/сек» figure (qualitative direction is preserved by disclaimer added in #1.4).
-- #N (row 61, line 167) — Cliff Click formal-proof note.
+## Fix pass 2026-05-23
 
-Verified on live after deploy: _(filled by evaluator after deploy run lands)_.
+Target: close the two remaining ⚠️ rows in section-log (§5, §8) by addressing the items previously listed as "explicitly out of scope".
+
+| # | Item | Status | Summary |
+|---|---|---|---|
+| 2.1 | AQS / Treiber production-user attribution (#D, row 51, page line 126) | FIXED (2026-05-23) | Replaced AQS (which actually uses a CLH FIFO queue, per AQS class-level javadoc: «The wait queue is a variant of a 'CLH' (Craig, Landin, and Hagersten) lock queue») with `java.util.concurrent.FutureTask.WaitNode` (in-source comment: «Simple linked list nodes to record waiting threads in a Treiber stack»). Added reference [23] to FutureTask.java; added a parenthetical clarifying that AQS is CLH-based, not Treiber. |
+| 2.2 | Open/closed hashing terminology (#E, row 58, page line 164) | FIXED (2026-05-23) | «Закрытое хеширование с lock-free chains» → «Открытое хеширование (separate chaining) с lock-free-цепочками». Confirmed by multiple textbook sources (opendsa-server.cs.vt.edu, VisuAlgo): open hashing ≡ separate chaining; closed hashing ≡ open addressing. |
+| 2.3 | Cliff Click subjective wording (#N, row 61, page line 167) | FIXED (2026-05-23) | Removed «рекомендуется использовать с осторожностью» (subjective). Kept the verifiable factual statement «peer-reviewed формального доказательства линеаризуемости и lock-free-свойств в литературе нет». |
+| 2.4 | Elimination-backoff specific number (#K, row 92, page line 277) | FIXED (2026-05-23) | Dropped the unverifiable specific «~7500 ops/сек при 32 потоках» (SPAA 2004 Figure 7 PDF does not parse; no secondary source quotes a numeric throughput). Replaced with the qualitative claim «масштабируется почти линейно, тогда как обычный Treiber выходит на плато» — supported by SPAA 2004 abstract. Chart disclaimer from fix pass #1.4 remains in place. |
+
+**Unresolved remarks: 0** (in-scope set: items #2.1–#2.4 all FIXED). After this pass, all rows in section-log are ✅.
+
+Explicitly out of scope (remain ⚠️ by design at the sentence level, but not pulled into section-log status because they are stylistic / minor):
+- #B (row 25, line 40) — CLQ «javadoc явно говорит» phrasing (mirror of #F, which was already closed at the source-comment level by fix pass #1.2; row-25 wording is identical to row-54 phrasing and was deemed acceptable in context).
+- #C (row 44, line 111) — DCAS/DWCAS terminology (cosmetic; CMPXCHG16B itself is correct).
+- #H (row 81, line 202) — Disruptor FAA/CAS + «не wait-free» attribution (Disruptor 1.0 paper does not contain the explicit phrase «not wait-free», but the qualitative claim about CAS-loop progress is correct; full rework requires reading the LMAX whitepaper end-to-end and is deferred).
+
+Verified on live after deploy: _(filled by evaluator after deploy run lands for 2026-05-23 fix pass)_.
