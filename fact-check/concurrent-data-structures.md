@@ -262,4 +262,4 @@ Explicitly out of scope (remain ⚠️ by design at the sentence level, but not 
 - #C (row 44, line 111) — DCAS/DWCAS terminology (cosmetic; CMPXCHG16B itself is correct).
 - #H (row 81, line 202) — Disruptor FAA/CAS + «не wait-free» attribution (Disruptor 1.0 paper does not contain the explicit phrase «not wait-free», but the qualitative claim about CAS-loop progress is correct; full rework requires reading the LMAX whitepaper end-to-end and is deferred).
 
-Verified on live after deploy: _(filled by evaluator after deploy run lands for 2026-05-23 fix pass)_.
+Verified on live after deploy: deploy run `26330249944` (success, 2026-05-23T10:23:54Z); evaluator confirmed on production at 2026-05-23T10:25Z all four fixes (FutureTask.WaitNode replaces AQS attribution + ref [23] live, «Открытое хеширование (separate chaining)» live, Cliff Click без «осторожностью» live, elimination-backoff качественная формулировка без «~7500» live).
