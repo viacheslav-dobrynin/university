@@ -59,6 +59,6 @@ Submodule commit: 6428957e1338ce5a4d6a651d34f44ff26a76cfd8 — Parent: a6460048d
 - Опровергнуто (❌): 0
 - Неточно (⚠️): 0
 - Не удалось подтвердить (🔍): 0
-- Косметика (не блокирует): 1 — ref [6] заголовок «The Power of B-trees» vs процитированный overview-URL → ISSUES #31 (P4).
+- Косметика (не блокирует): 1 — ref [6] заголовок «The Power of B-trees» vs процитированный overview-URL → ISSUES #31 (P4). FIXED (2026-06-09): ref [6] переименован в «Technical Overview — … (раздел «ACID Properties»)», URL docs.couchdb.org/en/stable/intro/overview.html совпадает с заголовком (ISSUES #31 FIXED).
 
 Все 14 содержательных разделов + список литературы проверены sentence-by-sentence; вся арифметика (cons-список, HAMT, вектор) пересчитана независимо и совпадает; все 8 ссылок с корректными метаданными и резолвящимися DOI/URL; house-style цитирования совпадает с bloom-filter.mdx. CI зелёный, live-страница и обратная ссылка с lock-free страницы проверены.

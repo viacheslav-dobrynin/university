@@ -53,7 +53,7 @@ Last verification pass (sentence-by-sentence): 2026-06-08
 |---|---|---|---|
 | 1 | Shapiro, Preguiça, Baquero, Zawirski 2011, RR-7506 INRIA | ✅ | hal.inria.fr/inria-00555588 — 200; авторы/год/тип отчёта/CvRDT/CmRDT/SEC подтверждены. |
 | 2 | Shapiro et al. 2011, SSS 2011, LNCS 6976, 386–400 | ✅ | doi 10.1007/978-3-642-24550-3_29 резолвится (Springer). |
-| 3 | Preguiça 2018, arXiv:1806.10254 | ✅ метаданные / ⚠️ не процитирован inline | arxiv.org/abs/1806.10254 — 200. Определён, но нет inline `[[3]]` (ISSUES #30). |
+| 3 | Preguiça 2018, arXiv:1806.10254 | ✅ метаданные + inline | arxiv.org/abs/1806.10254 — 200. FIXED (2026-06-09): inline `[[3]]` добавлен в `## Две семьи CRDT`, резолвится к `#ref-preguica-survey` (ISSUES #30 FIXED). |
 | 4 | Almeida, Shoker, Baquero 2018, JPDC 111:162–173 (arXiv:1603.01529) | ✅ | doi 10.1016/j.jpdc.2017.08.003 — 200; том/страницы верны. |
 | 5 | Preguiça, Baquero, Almeida, Fonte, Gonçalves 2010, DVV, arXiv:1011.5808 | ✅ | arxiv.org/abs/1011.5808 — 200; применение в Riak подтверждено. |
 | 6 | Roh, Jeon, Kim, Lee 2011, RGA, JPDC 71(3):354–368 | ✅ | doi 10.1016/j.jpdc.2010.12.006 — 200. |
